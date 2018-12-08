@@ -52,16 +52,21 @@ public class RfileServiceIntTest
     @Test
     public void can_saveFileToResource() throws IOException
     {
+        // Initialize the data
         String testPath = "testData.txt";
         String testData = "test data";
         InputStream is = new ByteArrayInputStream(testData.getBytes());
 
-        rfileService.put(TEST_HOST + testPath, is);
+        // Action
+        String path = TEST_HOST + testPath;
+        rfileService.put(path, is);
 
-        // assert
+        // Assert
+        assertTrue(rfileService.exists(path));
 
-
-        // cleanup
+        // Cleanup
+        rfileService.delete(path);
+        assertFalse(rfileService.exists(path));
     }
 
     @Test

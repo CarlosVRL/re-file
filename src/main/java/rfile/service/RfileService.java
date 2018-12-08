@@ -32,4 +32,21 @@ public interface RfileService
      * @throws IOException I/O error or response validation failure
      */
     void put(String path, InputStream data) throws IOException;
+
+    /**
+     * Performs a request to see if a resource exists or not.
+     *
+     * @param path path to the resource
+     * @return true if the resource is founde, else false
+     * @throws IOException I/O error or response validation failure
+     */
+    boolean exists(String path) throws IOException;
+
+    /**
+     * Delete a resource at the specified url.
+     *
+     * @param url Path to the resource including protocol and hostname
+     * @throws IOException I/O error or HTTP response validation failure
+     */
+    void delete(String url) throws IOException;
 }

@@ -39,6 +39,18 @@ public class RfileSardineImpl implements RfileService
         this.sardine.put(path, data);
     }
 
+    @Override
+    public boolean exists(String path) throws IOException
+    {
+        return this.sardine.exists(path);
+    }
+
+    @Override
+    public void delete(String url) throws IOException
+    {
+        this.sardine.delete(url);
+    }
+
     private List<RfileResource> setList(List<DavResource> davResources)
     {
         List<RfileResource> rfileResources = new ArrayList<>();
