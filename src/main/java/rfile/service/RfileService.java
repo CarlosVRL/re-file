@@ -2,7 +2,6 @@ package rfile.service;
 
 import rfile.domain.RfileResource;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface RfileService
