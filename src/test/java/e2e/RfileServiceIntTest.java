@@ -52,21 +52,9 @@ public class RfileServiceIntTest
     @Test
     public void can_saveFileToResource() throws IOException
     {
-        // Initialize the data
-        String testPath = "testData.txt";
-        String testData = "test data";
-        InputStream is = new ByteArrayInputStream(testData.getBytes());
-
-        // Action
-        String path = TEST_HOST + testPath;
-        rfileService.put(path, is);
-
-        // Assert
+        String path = this.createTestFile();
         assertTrue(rfileService.exists(path));
-
-        // Cleanup
-        rfileService.delete(path);
-        assertFalse(rfileService.exists(path));
+        this.deleteTestFile(path);
     }
 
     @Test
@@ -85,5 +73,23 @@ public class RfileServiceIntTest
     public void can_listContentsOfSubdirectory()
     {
 
+    }
+
+    private String createTestFile() throws IOException
+    {
+        String testPath = "testData.txt";
+        String testData = "test data";
+        InputStream is = new ByteArrayInputStream(testData.getBytes());
+
+        String path = TEST_HOST + testPath;
+        rfileService.put(path, is);
+
+        return path;
+    }
+
+    private void deleteTestFile(String path) throws IOException
+    {
+        rfileService.delete(path);
+        assertFalse(rfileService.exists(path));
     }
 }
