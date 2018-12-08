@@ -8,6 +8,7 @@ import rfile.domain.fact.RfileResourceFactory;
 import rfile.service.RfileService;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +19,24 @@ public class RfileSardineImpl implements RfileService
 
     public RfileSardineImpl() { return; }
 
-    public RfileSardineImpl init()
+    @Override
+    public RfileSardineImpl init(String username, String password, String host)
     {
-        this.sardine = SardineFactory.begin();
+        this.sardine = SardineFactory.begin(username, password);
+        this.sardine.enablePreemptiveAuthentication(host);
         return this;
     }
 
+    @Override
     public List<RfileResource> list(String url) throws IOException
     {
         return setList(sardine.list(url));
+    }
+
+    @Override
+    public void put(String path, InputStream data) throws IOException
+    {
+        this.sardine.put(path, data);
     }
 
     private List<RfileResource> setList(List<DavResource> davResources)
