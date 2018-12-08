@@ -1,5 +1,6 @@
 package e2e;
 
+import org.apache.commons.io.IOUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import rfile.domain.RfileResource;
@@ -9,6 +10,7 @@ import rfile.service.impl.RfileSardineImpl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -58,9 +60,13 @@ public class RfileServiceIntTest
     }
 
     @Test
-    public void can_readFileFromResource()
+    public void can_readFileFromResource() throws IOException
     {
-
+        String path = this.createTestFile();
+        InputStream fis = rfileService.get(path);
+        String data = IOUtils.toString(fis, (Charset) null);
+        assertEquals(data, "test data");
+        this.deleteTestFile(path);
     }
 
     @Test

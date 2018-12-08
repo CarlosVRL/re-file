@@ -43,10 +43,18 @@ public interface RfileService
     boolean exists(String path) throws IOException;
 
     /**
-     * Delete a resource at the specified url.
+     * Delete a resource at the specified path.
      *
-     * @param url Path to the resource including protocol and hostname
+     * @param path path to the resource
      * @throws IOException I/O error or HTTP response validation failure
      */
-    void delete(String url) throws IOException;
+    void delete(String path) throws IOException;
+
+    /**
+     * Get a resource at the specified path.
+     *
+     * @param path path to the resource
+     * @return
+     */
+    InputStream get(String path) throws IOException;
 }

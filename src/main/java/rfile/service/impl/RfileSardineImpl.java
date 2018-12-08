@@ -51,6 +51,12 @@ public class RfileSardineImpl implements RfileService
         this.sardine.delete(url);
     }
 
+    @Override
+    public InputStream get(String path) throws IOException
+    {
+        return this.sardine.get(path);
+    }
+
     private List<RfileResource> setList(List<DavResource> davResources)
     {
         List<RfileResource> rfileResources = new ArrayList<>();
