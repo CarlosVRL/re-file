@@ -34,10 +34,34 @@ public class RfileServiceIntTest
     }
 
     @Test
-    public void can_list() throws IOException
+    public void can_list() throws Exception
     {
         List<RfileResource> rfileResources
                 = rfileService.list("http://192.168.99.100:8080/");
         assertEquals(rfileResources.get(0).getPath(), ROOT_DIR);
+    }
+
+    @Test
+    public void can_saveFileToResource()
+    {
+
+    }
+
+    @Test
+    public void can_readFileFromResource()
+    {
+
+    }
+
+    @Test
+    public void can_listSubDirectories()
+    {
+
+    }
+
+    @Test
+    public void can_listContentsOfSubdirectory()
+    {
+
     }
 }

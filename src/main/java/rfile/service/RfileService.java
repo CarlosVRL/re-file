@@ -17,9 +17,9 @@ public interface RfileService
     /**
      * Gets a directory listing from the URL.
      *
-     * @param url Path to the resource including protocol and hostname
-     * @return List of resources for this URI including the parent resource itself
-     * @throws IOException I/O error or HTTP response validation failure
+     * @param path path to the resource
+     * @return list of resources including the parent resource itself
+     * @throws Exception I/O error or response validation failure
      */
-    List<RfileResource> list(String url) throws IOException;
+    List<RfileResource> list(String path) throws Exception;
 }
